@@ -22,29 +22,19 @@ class MovieCell: UICollectionViewCell {
   let imageView: UIImageView = {
     let iv = UIImageView()
 //    iv.backgroundColor = .red
-//    iv.layer.cornerRadius = 10
-//    iv.clipsToBounds = true
+    iv.layer.cornerRadius = 20
+    iv.clipsToBounds = true
     iv.contentMode = .scaleAspectFit
 
     return iv
   }()
   
-//  lazy var nameContainerView: UIView = {
-//    let view = UIView()
-//    view.backgroundColor = .silver()
-//
-//    view.addSubview(nameLabel)
-//    nameLabel.center(inView: view)
-//
-//    return view
-//  }()
-  
   let nameLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    label.textColor = .black
+    label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     label.text = "The Best Movie Ever"
-    label.backgroundColor = .black
+//    label.backgroundColor = .black
     label.lineBreakMode = .byWordWrapping
     label.numberOfLines = 0
     label.adjustsFontSizeToFitWidth = true
@@ -73,16 +63,13 @@ class MovieCell: UICollectionViewCell {
   // MARK: - Helper Functions
   
   func configureViewComponents() {
-    self.layer.cornerRadius = 10
+    self.layer.cornerRadius = 20
     self.clipsToBounds = true
     
     addSubview(imageView)
     imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
     
     addSubview(nameLabel)
-    nameLabel.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 0, height: 60)
-    
-//    addSubview(nameContainerView)
-//    nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 62)
+    nameLabel.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: -8, paddingLeft: 0, paddingBottom: 30, paddingRight: 0, width: 0, height: 60)
   }
 }

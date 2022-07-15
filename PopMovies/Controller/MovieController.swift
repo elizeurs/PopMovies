@@ -62,13 +62,15 @@ extension MovieController {
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCell
-//    cell.backgroundColor = .black
-    
-//    let movie = movies[indexPath.item]
-//    cell.nameLabel.text = movie.title
     cell.movie = self.movies[indexPath.item]
-//    cell.imageView.image = movie.posterPath
     return cell
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let controller = MovieDetailController()
+    controller.movie = movies[indexPath.row]
+    navigationController?.pushViewController(controller, animated: true)
   }
 }
 
@@ -80,7 +82,7 @@ extension MovieController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-    let width = (view.frame.width - 27) / 2
+    let width = (view.frame.width - 28) / 2
     return CGSize(width: width, height: 350)
   }
 }
