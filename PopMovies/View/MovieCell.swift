@@ -6,33 +6,52 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieCell: UICollectionViewCell {
   
   // MARK: - Properties
   
+  var movie: Movie! {
+    didSet {
+      imageView.sd_setImage(with: URL(string: movie.posterPath))
+      nameLabel.text = movie?.title
+    }
+  }
+  
   let imageView: UIImageView = {
     let iv = UIImageView()
-    iv.backgroundColor = .systemGray
+//    iv.backgroundColor = .red
+//    iv.layer.cornerRadius = 10
+//    iv.clipsToBounds = true
     iv.contentMode = .scaleAspectFit
+
     return iv
   }()
   
-  lazy var nameContainerView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .systemPink
-    
-    view.addSubview(nameLabel)
-    nameLabel.center(inView: view)
-    
-    return view
-  }()
+//  lazy var nameContainerView: UIView = {
+//    let view = UIView()
+//    view.backgroundColor = .silver()
+//
+//    view.addSubview(nameLabel)
+//    nameLabel.center(inView: view)
+//
+//    return view
+//  }()
   
   let nameLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     label.text = "The Best Movie Ever"
+    label.backgroundColor = .black
+    label.lineBreakMode = .byWordWrapping
+    label.numberOfLines = 0
+    label.adjustsFontSizeToFitWidth = true
+    label.textAlignment = .center
+//    label.layer.cornerRadius = 10
+//    label.clipsToBounds = true
+
     return label
   }()
   
@@ -58,9 +77,12 @@ class MovieCell: UICollectionViewCell {
     self.clipsToBounds = true
     
     addSubview(imageView)
-    imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 32)
+    imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
     
-    addSubview(nameContainerView)
-    nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+    addSubview(nameLabel)
+    nameLabel.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 0, height: 60)
+    
+//    addSubview(nameContainerView)
+//    nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 62)
   }
 }
