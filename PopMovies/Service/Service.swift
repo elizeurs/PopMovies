@@ -13,7 +13,7 @@ class Service {
   
   func fetchMovies(completion: @escaping ([Movie], Error?) -> ()) {
     
-    let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=e0330d7c6c649fe9f0325ddea7eeae4f&language=en-US&page=1"
+    let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=\(API.key)&language=en-US&page=1"
     guard let url = URL(string: urlString) else { return }
 
     URLSession.shared.dataTask(with: url) { (data, resp, err) in
